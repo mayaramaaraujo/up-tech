@@ -10,6 +10,7 @@ export function Home() {
   const isFirstRender = useRef(true);
 
   const [search, setSearch] = useInput('');
+  const [orderBy, setOrderBy] = useInput('')
   const [maxResults, setMaxResults] = useInput(10);
   const [startIndex, setStartIndex] = useState(0);
   const [results, setResults] = useState({});
@@ -21,6 +22,7 @@ export function Home() {
         q: search,
         startIndex: startIndex,
         maxResults: maxResults,
+        orderBy: orderBy,
         key: API_KEY
       }
     })
@@ -40,11 +42,17 @@ export function Home() {
     }
 
     booksSearch();
-  }, [maxResults, startIndex])
+  }, [maxResults, startIndex, orderBy])
 
   return (
     <>
-      <SearchComponent booksSearch={booksSearch} search={search} setSearch={setSearch} />
+      <SearchComponent 
+        booksSearch={booksSearch} 
+        search={search} 
+        setSearch={setSearch}
+        orderBy={orderBy}
+        setOrderBy={setOrderBy} 
+      />
       <ResultsComponent
         results={results}
         startIndex={startIndex}
