@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-export const useInput = () => {
-  const [data, setData] = useState();
+export const useInput = (initialState) => {
+  const [data, setData] = useState(initialState);
 
   const handleInput = (event) => {
     setData(event.target.value)
