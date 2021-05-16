@@ -1,5 +1,7 @@
 import { Divider, TablePagination, Typography } from '@material-ui/core';
 import { Fragment } from 'react';
+import { useHistory } from 'react-router';
+import { goToPages } from '../../utils';
 import { Book, BookSection, BookHeader, BookImg, BookMain, BookLink, ResultsSubtitle } from './style';
 
 export function ResultsComponent(props) {
@@ -12,6 +14,8 @@ export function ResultsComponent(props) {
   const handleRowsPerPage = (e) => {
     props.setMaxResults(e);
   }
+
+  const history = useHistory();
 
   return (
     <>
@@ -37,7 +41,7 @@ export function ResultsComponent(props) {
                         item.volumeInfo?.description.substr(0, 400) + "..." :
                         item.volumeInfo?.descriptions}
                     </Typography>
-                    <BookLink href="">Ver mais</BookLink>
+                    <BookLink href="" onClick={() => goToPages(history, `/details/${item.id}`)}>Ver mais</BookLink>
                   </BookMain>
                 </Book>
                 <Divider />

@@ -15,7 +15,7 @@ export function Router() {
           <Route exact path="/favorites">
             <Favorites />
           </Route>
-          <Route exact path="/details">
+          <Route exact path="/details/:id">
             <Details />
           </Route>
         </Switch>
