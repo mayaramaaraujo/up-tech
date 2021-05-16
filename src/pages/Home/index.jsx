@@ -5,12 +5,14 @@ import { SearchComponent } from '../../components/search/searchComponent';
 import { ResultsComponent } from '../../components/results/resultsComponent';
 import { useEffect, useRef, useState } from 'react';
 import { useInput } from '../../hooks/useInput';
+import { HomePage } from './style';
+import { Header } from '../../components/header';
 
 export function Home() {
   const isFirstRender = useRef(true);
 
   const [search, setSearch] = useInput('');
-  const [orderBy, setOrderBy] = useInput('')
+  const [orderBy, setOrderBy] = useInput('relevance')
   const [maxResults, setMaxResults] = useInput(10);
   const [startIndex, setStartIndex] = useState(0);
   const [results, setResults] = useState({});
@@ -26,17 +28,17 @@ export function Home() {
         key: API_KEY
       }
     })
-    .then((res) => {
-      setResults(res.data)
-    })
-    .catch(err => 
-      console.log(err)
-    )
+      .then((res) => {
+        setResults(res.data)
+      })
+      .catch(err =>
+        console.log(err)
+      )
   }
 
   useEffect(() => {
-    
-    if(isFirstRender.current) {
+
+    if (isFirstRender.current) {
       isFirstRender.current = false;
       return
     }
@@ -45,13 +47,14 @@ export function Home() {
   }, [maxResults, startIndex, orderBy])
 
   return (
-    <>
-      <SearchComponent 
-        booksSearch={booksSearch} 
-        search={search} 
+    <HomePage>
+      <Header />
+      <SearchComponent
+        booksSearch={booksSearch}
+        search={search}
         setSearch={setSearch}
         orderBy={orderBy}
-        setOrderBy={setOrderBy} 
+        setOrderBy={setOrderBy}
       />
       <ResultsComponent
         results={results}
@@ -60,6 +63,6 @@ export function Home() {
         maxResults={maxResults}
         setMaxResults={setMaxResults}
       />
-    </>
+    </HomePage>
   )
 }

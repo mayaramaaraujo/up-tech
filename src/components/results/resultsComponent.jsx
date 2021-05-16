@@ -1,6 +1,6 @@
-import { Divider, Link, TablePagination, Typography } from '@material-ui/core';
+import { Divider, TablePagination, Typography } from '@material-ui/core';
 import { Fragment } from 'react';
-import { Book, BookSection, BookHeader, BookImg, BookMain } from './style';
+import { Book, BookSection, BookHeader, BookImg, BookMain, BookLink, ResultsSubtitle } from './style';
 
 export function ResultsComponent(props) {
   const items = props.results.items;
@@ -15,13 +15,18 @@ export function ResultsComponent(props) {
 
   return (
     <>
+      {items &&
+        <ResultsSubtitle variant="subtitle2">
+          {props.results.totalItems} resultados encontrados.
+        </ResultsSubtitle>
+      }
+      
       <BookSection>
         {items &&
-          items.map((item) => {
-            console.log(item)
+          items.map((item, i) => {
             return (
-              <Fragment>
-                <Book key={item.id}>
+              <Fragment key={i}>
+                <Book>
                   <BookHeader>
                     <BookImg src={item.volumeInfo.imageLinks?.smallThumbnail} alt="" />
                   </BookHeader>
@@ -32,7 +37,7 @@ export function ResultsComponent(props) {
                         item.volumeInfo?.description.substr(0, 400) + "..." :
                         item.volumeInfo?.descriptions}
                     </Typography>
-                    <Link href="">Ver mais</Link>
+                    <BookLink href="">Ver mais</BookLink>
                   </BookMain>
                 </Book>
                 <Divider />
@@ -50,7 +55,7 @@ export function ResultsComponent(props) {
           rowsPerPage={props.maxResults}
           onChangeRowsPerPage={(e) => handleRowsPerPage(e)}
           rowsPerPageOptions={[10, 20, 40]}
-          labelRowsPerPage="Itens por página"
+          labelRowsPerPage="Itens"
           backIconButtonText="Página anterior"
           nextIconButtonText="Próxima página"
         />}

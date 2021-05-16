@@ -1,40 +1,45 @@
 import { Input, InputAdornment, MenuItem, Select, InputLabel } from '@material-ui/core';
-import { SearchOutlined } from '@material-ui/icons';
+import { OrderBySection, SearchContainer, SearchIcon } from './style';
 
 export function SearchComponent(props) {
 
   const handleKeyPress = (event) => {
-    if(event.key == "Enter") {
+    if (event.key === "Enter") {
       props.booksSearch();
     }
   }
 
   return (
-    <>
-      <Input 
+    <SearchContainer>
+      <Input
+        fullWidth={true}
         placeholder="Buscar livros"
-        value={props.search} 
+        value={props.search}
         onChange={(e) => props.setSearch(e)}
         onKeyPress={(e) => handleKeyPress(e)}
         endAdornment={
           <InputAdornment position="end">
-            <SearchOutlined
+            <SearchIcon
               aria-label="toggle password visibility"
               onClick={() => props.booksSearch()}
             >
-            </SearchOutlined>
+            </SearchIcon>
           </InputAdornment>
         }
       />
-      
-      <Select 
-        value={props.orderBy} 
-        onChange={(e) => props.setOrderBy(e)}
-        placeholder="Ordenar por"
-      > 
-        <MenuItem value="newest">Adicionados recentementes</MenuItem>
-        <MenuItem value="relevance">Relevância</MenuItem>
-      </Select>
-    </>
+      <OrderBySection>
+        <InputLabel>Ordenar por</InputLabel>
+        <Select
+          fullWidth={true}
+          value={props.orderBy}
+          label="Ordenar por"
+          onChange={(e) => props.setOrderBy(e)}
+          placeholder="Ordenar por"
+        >
+          <MenuItem value="relevance">Relevância</MenuItem>
+          <MenuItem value="newest">Adicionados recentementes</MenuItem>
+        </Select>
+      </OrderBySection>
+    </SearchContainer>
   )
 }
