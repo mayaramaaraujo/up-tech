@@ -1,3 +1,8 @@
+# Before testing the project
+It is necessary to create a key for the google book api and place it in the src/utils/index.js
+
+[Create book api key](https://developers.google.com/books/docs/v1/using)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
