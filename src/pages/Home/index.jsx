@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_KEY, BASE_URL } from '../../utils';
+import { API_KEY, BASE_URL, goToPages } from '../../utils';
 
 import { SearchComponent } from '../../components/search/searchComponent';
 import { ResultsComponent } from '../../components/results/resultsComponent';
@@ -7,6 +7,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useInput } from '../../hooks/useInput';
 import { HomePage } from './style';
 import { Header } from '../../components/header';
+import { FavoriteButton } from '../Details/style';
+import { useHistory } from 'react-router';
 
 export function Home() {
   const isFirstRender = useRef(true);
@@ -16,6 +18,8 @@ export function Home() {
   const [maxResults, setMaxResults] = useInput(10);
   const [startIndex, setStartIndex] = useState(0);
   const [results, setResults] = useState({});
+
+  const history = useHistory();
 
   const booksSearch = () => {
 
@@ -49,6 +53,7 @@ export function Home() {
   return (
     <HomePage>
       <Header />
+      
       <SearchComponent
         booksSearch={booksSearch}
         search={search}

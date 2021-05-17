@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { Button } from '@material-ui/core';
 
 export const DetailsPage = styled.div `
   width: 80%;
@@ -7,6 +8,7 @@ export const DetailsPage = styled.div `
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
 
   @media only screen and (max-width: 599px) {
     width: 98%;
@@ -18,7 +20,12 @@ export const DetailsPage = styled.div `
     margin: 0% 5%;
   } 
 `
-
+export const HeaderContainer = styled.div `
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+`
 export const DetailsHeader = styled.header `
   display: flex;
   justify-content: space-between;
@@ -79,18 +86,21 @@ export const BookInfo = styled.div `
 
 export const BookActions = styled.div `
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
+  width: 30%;
   align-items: center;
   margin: 20px 0px;
 
   @media only screen and (max-width: 599px) {
     justify-content: space-around;
     align-items: space-between;
+    width: 100%;
   }
 
   @media only screen and (max-width: 768px) {
     justify-content: space-around;
     align-items: space-between;
+    width: 100%;
   } 
 `
 
@@ -100,7 +110,7 @@ export const BuyLink = styled.div `
   width: 75px;
   text-align: center;
   border-radius: 25px;
-  margin-right: 5%;
+  margin: 0% 5%;
 
   :hover {
     background-color: #f1f1f1;
@@ -133,4 +143,8 @@ export const NotFavorite = styled.div `
   :hover {
     background-color: #d1d1d1;
   }
+`
+
+export const FavoriteButton = styled(Button) `
+  margin: 20px;
 `
