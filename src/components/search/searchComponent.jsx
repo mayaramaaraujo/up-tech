@@ -1,5 +1,8 @@
 import { Input, InputAdornment, MenuItem, Select, InputLabel } from '@material-ui/core';
-import { OrderBySection, SearchContainer, SearchIcon } from './style';
+import { useHistory } from 'react-router';
+import { FavoriteButton } from '../../pages/Details/style';
+import { goToPages } from '../../utils';
+import { OrderBySection, Search, SearchContainer, SearchIcon } from './style';
 
 export function SearchComponent(props) {
 
@@ -9,10 +12,12 @@ export function SearchComponent(props) {
     }
   }
 
+  const history = useHistory();
+
   return (
     <SearchContainer>
-      <Input
-        fullWidth={true}
+      <Search
+        color="secondary"
         placeholder="Buscar livros"
         value={props.search}
         onChange={(e) => props.setSearch(e)}
@@ -30,6 +35,7 @@ export function SearchComponent(props) {
       <OrderBySection>
         <InputLabel>Ordenar por</InputLabel>
         <Select
+          color="secondary"
           fullWidth={true}
           value={props.orderBy}
           label="Ordenar por"
@@ -40,6 +46,10 @@ export function SearchComponent(props) {
           <MenuItem value="newest">Adicionados recentementes</MenuItem>
         </Select>
       </OrderBySection>
+
+      <FavoriteButton variant="outlined" color="secondary" onClick={() => goToPages(history, "/favorites")}>
+        ver favoritos
+      </FavoriteButton>
     </SearchContainer>
   )
 }
