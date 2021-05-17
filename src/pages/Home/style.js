@@ -18,8 +18,6 @@ export const HomePage = styled.div `
   } 
 `
 
-
-
 export const SearchSection = styled.section `
   display: flex;
   flex-direction: row;
